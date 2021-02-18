@@ -1,6 +1,6 @@
 import React from "react";
-import {TextField} from "@material-ui/core";
-import {Button} from "@material-ui/core";
+import { TextField } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 export default class Form extends React.Component {
   state = {
@@ -13,13 +13,13 @@ export default class Form extends React.Component {
     email: "",
     emailError: "",
     password: "",
-    passwordError: ""
+    passwordError: "",
   };
 
-  change = e => {
+  change = (e) => {
     this.props.onChange({ [e.target.name]: e.target.value });
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -30,7 +30,7 @@ export default class Form extends React.Component {
       lastNameError: "",
       usernameError: "",
       emailError: "",
-      passwordError: ""
+      passwordError: "",
     };
 
     if (this.state.username.length < 5) {
@@ -45,13 +45,13 @@ export default class Form extends React.Component {
 
     this.setState({
       ...this.state,
-      ...errors
+      ...errors,
     });
 
     return isError;
   };
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
     // this.props.onSubmit(this.state);
     const err = this.validate();
@@ -67,14 +67,14 @@ export default class Form extends React.Component {
         email: "",
         emailError: "",
         password: "",
-        passwordError: ""
+        passwordError: "",
       });
       this.props.onChange({
         firstName: "",
         lastName: "",
         username: "",
         email: "",
-        password: ""
+        password: "",
       });
     }
   };
@@ -84,56 +84,65 @@ export default class Form extends React.Component {
       <form>
         <TextField
           name="firstName"
-          hintText="First name"
-          floatingLabelText="First name"
+          placeholder="First name"
+          label="First name"
           value={this.state.firstName}
-          onChange={e => this.change(e)}
-          errorText={this.state.firstNameError}
-          floatingLabelFixed
+          onChange={(e) => this.change(e)}
+          helperText={this.state.firstNameError}
         />
         <br />
         <TextField
           name="lastName"
-          hintText="Last Name"
-          floatingLabelText="Last Name"
+          placeholder="Last Name"
+          label="Last Name"
           value={this.state.lastName}
-          onChange={e => this.change(e)}
-          errorText={this.state.lastNameError}
-          floatingLabelFixed
+          onChange={(e) => this.change(e)}
+          helperText={this.state.lastNameError}
         />
         <br />
         <TextField
           name="username"
-          hintText="Username"
-          floatingLabelText="Username"
+          placeholder="Username"
+          label="Username"
           value={this.state.username}
-          onChange={e => this.change(e)}
-          errorText={this.state.usernameError}
-          floatingLabelFixed
+          onChange={(e) => this.change(e)}
+          helperText={this.state.usernameError}
         />
         <br />
         <TextField
           name="email"
-          hintText="Email"
-          floatingLabelText="Email"
+          placeholder="Email"
+          label="Email"
           value={this.state.email}
-          onChange={e => this.change(e)}
-          errorText={this.state.emailError}
-          floatingLabelFixed
+          onChange={(e) => this.change(e)}
+          helperText={this.state.emailError}
         />
         <br />
-        <TextField
-          name="password"
-          hintText="Password"
-          floatingLabelText="Password"
-          value={this.state.password}
-          onChange={e => this.change(e)}
-          errorText={this.state.passwordError}
-          type="password"
-          floatingLabelFixed
-        />
+        <div>
+          <TextField
+            name="password"
+            placeholder="Password"
+            label="Password"
+            value={this.state.password}
+            onChange={(e) => this.change(e)}
+            helperText={this.state.passwordError}
+            type="password"
+            floatingLabelFixed
+          />
+        </div>
         <br />
-        <Button label="Submit" onClick={e => this.onSubmit(e)} primary />
+
+        <div>
+          <Button
+            label="Submit"
+            variant="contained"
+            onClick={(e) => this.onSubmit(e)}
+            color="primary"
+          >
+            Submit
+          </Button>
+        </div>
+        <br />
       </form>
     );
   }
